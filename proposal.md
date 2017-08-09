@@ -2,7 +2,7 @@
 
 ###### Date a Dawg Proposal ###
 
-####W hat is Date a Dawg? ###
+##### What is Date a Dawg? ###
 
 You are on a date with a dog or "dawg." You can ask the dawg the typical date questions selecting through choices such as, what's your favorite hobby? and what do you like to eat? 
 
@@ -10,11 +10,11 @@ The dawg in turn will also ask you questions that you can answer with given choi
 
 Based on the questions and answers that the dog asks, hearts are rewarded and stored at the top of the screen. You are trying to get the most amount of hearts you can. When the date is over, if you have achieved the requisite amount of hearts, the date is either a success or not. 
 
-#### Wireframe ###
+##### Wireframe ###
 
 (Your wireframes go here. Preferably two or more)
 
-#### Initial thoughts on game structure ###
+##### Initial thoughts on game structure ###
 
 (Write out what challenges you expect to encounter, or ideas you want to come up with)
 
@@ -28,8 +28,7 @@ I'll need to put click event listeners on all of the questions and responses tha
 
 I also want to be able for the user to type in their name so the dawg can continuously reference the player, just as a real date would be simulated. I need to figure out how I can store that value and continue to reuse that throughout the game. 
 
-
-#### Phases of Completion ###
+##### Phases of Completion ###
 
 (The steps or phases you expect to go through, and the tasks that you'll need to accomplish to reach each step. These should resemble the acceptance criteria we were working through earlier.)
 
@@ -43,6 +42,17 @@ I'll want to have a landing page with just an image of one dog, instructions, an
 
 **Day 4&5:** Making tweaks, including populating real questions, adjusting any css & html issues, and perfecting any additional css animations. 
 
-Links and Resources
+##### Links and Resources ###
 
 (Anything you've looked up so far or are thinking about using.)
+
+**CSS Animations:**
+https://daneden.github.io/animate.css/
+https://developer.mozilla.org/en-US/docs/Web/CSS/animation
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations
+
+**Content Helpers:**
+https://www.slowdating.com/speed-dating/speed-dating-questions.aspx
+https://thoughtcatalog.com/kendra-syrdal/2015/02/31-genuinely-interesting-questions-for-you-to-ask-your-next-date/
+https://www.laptopmag.com/articles/10-weirdest-questions-asked-by-okcupid
+
