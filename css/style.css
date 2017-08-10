@@ -1,0 +1,148 @@
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+#gametitle {
+  font-family: 'Passion One', cursive;
+  font-size: 100px;
+}
+
+#textwrapper {
+  width: 600px;
+  height: 600px;
+  text-align: center;
+  /*border: 1px solid black;*/
+}
+
+#instructions {
+  margin: 10px;
+  padding: 20px;
+}
+
+#play {
+  height: 40px;
+  width: 100px;
+  margin: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  background-color: hotpink;
+}
+
+#input {
+  font-family: 'Poppins', sans-serif;
+  height: 24px;
+  width: 300px;
+}
+
+#wrapper {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#question {
+/*  border: 1px solid black;*/
+  height: 350px;
+  text-transform: uppercase;
+  padding: 10px;
+  background-color: grey;
+/*  position: absolute;*/
+}
+
+#response {
+/*  border: 1px solid black;*/
+  height: 200px;
+  width: 480px;
+  text-transform: uppercase;
+  padding: 10px;
+  z-index: 1;
+  margin: -200px 0 0 0;
+  background-color: darkgrey;
+/*  position: absolute;*/
+}
+
+#lovemeter {
+  border: 3px solid black;
+  height: 100px;
+  font-size: 24px;
+  color: black;
+  padding: 10px;
+  background-color: grey;
+}
+
+p span {
+  color: hotpink;
+}
+
+#gamewrapper {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: center;
+  margin: 50px;
+}
+
+#queswrapper {
+/*  display: flex;*/
+  position: relative;
+/*  border: 1px solid black;*/
+  width: 500px;
+  height: auto;
+/*  flex-direction: column;*/
+
+}
+
+#gamedog {
+  position: absolute;
+  position: relative;
+/*  border: 1px solid black;*/
+  width: 500px;
+  height: auto;
+  margin: 0px 50px 0px 0px;
+}
+
+#startdog {
+  background-image: url("../assets/main-page.png");
+  /*border: 1px solid black;*/
+  position: relative;
+  height: auto;
+  width: 500px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin: 10px;
+}
+
+#gamedogbody {
+  background-image: url("../assets/dogbody.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+/*  border: 1px solid black;*/
+  position: absolute;
+  margin: 190px 0 0 0;
+  height: 500px;
+  width: 500px;
+}
+
+#gamedoghead {
+  background-image: url("../assets/doghead.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+/*  border: 1px solid black;*/
+  position: absolute;
+  margin: 122px 0 0 200px;
+  height: 200px;
+  width: 200px;
+  z-index: 2;
+}
+
+#picnic {
+  background-image: url("../assets/picnic.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  height: 250px;
+  width: 500px;
+/*  border: 1px solid black;*/
+}
+
