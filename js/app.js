@@ -10,7 +10,7 @@ window.onload = function() {
 
 //make an array of an object of questions (see picture)
   let questions = [
-    {question1: 'What is your favorite color?',
+    {ask: 'What is your favorite color?',
       answers: [
         { word: 'blue',
           points: 0,
@@ -18,9 +18,15 @@ window.onload = function() {
         { word: 'pink',
           points: 1,
         },
+        { word: 'yellow',
+          points: 2,
+        },
+        { word: 'green',
+          points: 3,
+        }
         ],
     },
-    {question2: 'What is your favorite snack?',
+    {ask: 'What is your favorite snack?',
       answers: [
       { word: 'bacon',
         points: 0,
@@ -28,16 +34,23 @@ window.onload = function() {
       { word: 'peanuts',
         points: 1,
       },
+      { word: 'popcorn',
+        points: 2,
+      },
+      { word: 'carrots',
+        points: 3,
+      },
       ]
     }
   ]
+
+  let dogResponses = ['Are you having a ruff day', 'Ummm...sure OK', 'Ex-squeeze me?']
 
 console.log(questions.question2);
 
 //USER QUESTIONS
 //make user questions populate function
 //box slides in
-//randomize user questions
 //question appears
 //user selects answer
 //store answer
@@ -87,8 +100,46 @@ console.log(questions.question2);
     //   //adding this player at the index of 0 is equal to the object
     //   alert('Let\'s get our lovin\' on ' + enteredName);
     // }
+    makeQuestion();
   }
  };
+
+    let questionask = document.querySelector('#question');
+    let choiceA = document.querySelector('#choiceA');
+    let choiceB = document.querySelector('#choiceB');
+    let choiceC = document.querySelector('#choiceC');
+    let choiceD = document.querySelector('#choiceD');
+    let responsebox = document.querySelector('#responsebox');
+
+  //loop through the questions for user to select answer
+  function makeQuestion() {
+    for (let i = 0; i <= questions.length; i++) {
+    questionask.innerHTML = questions[i].ask;
+    choiceA.innerHTML = questions[i].answers[0].word;
+    choiceB.innerHTML = questions[i].answers[1].word;
+    choiceC.innerHTML = questions[i].answers[2].word;
+    choiceD.innerHTML = questions[i].answers[3].word;
+    //add event listener
+    let selection = document.querySelector('.answer');
+    selection.addEventListener('click', lovemeter);
+    let score = questions[i].answers[0].points
+
+
+    //wait for click
+    //store value of answer selected
+    //push value to lovemeter
+  }
+    //make question slide out and dog response slide in
+    dogTalk();
+  }
+
+//make dog respond
+  function dogTalk() {
+    for (let i = 0; i <= dogResponses.length; i++) {
+      responsebox.innerHTML = dogResponses[i];
+      //have dog talk using user input
+    }
+  }
 
 //reset function
   //grab the reset button

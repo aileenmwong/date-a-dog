@@ -55,16 +55,41 @@ body {
   justify-content: center;
 }
 
-#question {
+#questionbox {
   border: 3px solid black;
   height: 350px;
   text-transform: uppercase;
   padding: 10px;
   background-color: grey;
+/*  visibility: hidden;*/
 /*  position: absolute;*/
+  z-index: 1;
+  animation-name: questionslide;
+  animation-duration: 3s;
 }
 
-#response {
+@keyframes questionslide {
+    0% {right: 0%;}
+    100% {left: 100%;}
+}
+
+#question{
+/*  border: 3px solid black;*/
+  height: 60px;
+  font-size: 24px;
+}
+
+.answer {
+/*  border: 3px solid black;*/
+  height: 60px;
+  font-size: 24px;
+}
+
+.answer:hover {
+    color: hotpink;
+}
+
+#responsebox {
   border: 3px solid black;
   height: 200px;
   width: 474px;
@@ -73,8 +98,22 @@ body {
   z-index: 1;
   margin: -300px 0 0 0;
   background-color: darkgrey;
+  z-index: 2;
+/*  animation-duration: 2s;
+  animation-name: slideright;*/
+  visibility: hidden;
 /*  position: absolute;*/
 }
+/*@keyframes slideright {
+  from {
+    margin-right: 100%;
+    width: 100%;
+  }
+  to {
+    margin-right: 0%;
+    width: 100%;
+  }
+}*/
 
 #lovemeter {
   border: 3px solid black;
@@ -105,7 +144,6 @@ p span {
   width: 500px;
   height: auto;
 /*  flex-direction: column;*/
-
 }
 
 #resetwrapper {
