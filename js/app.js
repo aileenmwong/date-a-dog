@@ -6,7 +6,7 @@ window.onload = function() {
     question: document.querySelector('#question'),
     response: document.querySelector('#response')
   }
-
+  let nameCollector = [];
 
 //make an array of an object of questions (see picture)
   let questions = [
@@ -34,26 +34,37 @@ window.onload = function() {
 
 console.log(questions.question2);
 
-//win function
-
-//make user questions function
-
+//USER QUESTIONS
+//make user questions populate function
+//box slides in
 //randomize user questions
+//question appears
+//user selects answer
+//store answer
+//box slides out
 
+//LOVEMETER FUNCTION
+//store value from answer
+//push hearts into lovemeter
+
+//DOG RESPONSE FUNCTION
+//dog response box slides in
 //make dog response function
-
 //randomize dog responses
+//have dog use user input
 
-//annouce winner function
-
-//reset function
-
-//add event listener for play button on first page
-
-//add event listener for reset button on second page
-
-//grab user input name and put it in game?
-
+// //win function
+//   function getWinner() {
+//     //if (hearts === 18){
+//       //winner is printed in the the result box
+//       document.querySelector('#lovemeter').innerHTML = 'It\'s a match!';
+//       //remove event listener
+//     }
+//     //else if (hearts === 18){
+//       //winner is printed in the the result box
+//       document.querySelector('#lovemeter').innerHTML = 'You\'re barking up the wrong tree';
+//       //remove event listener
+//     };
 
 //make startgame function
   //grab the start button
@@ -63,12 +74,19 @@ console.log(questions.question2);
   //when button is clicked, start game
   if(playButton){
   playButton.addEventListener('click', start);
+
   function start() {
-    // //take user to game page
-    // location.href='../project-1/index2.html';
-    // //store user input value for later use
+    //hide home page and show game page
     homepage.style.visibility='hidden';
     gamepage.style.visibility='visible';
+    //grab user input name and store it in the collector array
+    let enteredName = document.querySelector('#input').value;
+    nameCollector.push(enteredName);
+     //if they input something
+    // if (enteredName !== null) {
+    //   //adding this player at the index of 0 is equal to the object
+    //   alert('Let\'s get our lovin\' on ' + enteredName);
+    // }
   }
  };
 
@@ -79,10 +97,10 @@ console.log(questions.question2);
   if(resetButton){
   resetButton.addEventListener('click', reset);
   function reset() {
-    // //take user back to landing page
-    // location.href='../project-1/index.html';
-    homepage.style.visibility='visible';
-    gamepage.style.visibility='hidden';
+    //hide game page and show home page
+    // homepage.style.visibility='visible';
+    // gamepage.style.visibility='hidden';
+    location.reload();
   }
   };
 
