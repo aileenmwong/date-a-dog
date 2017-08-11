@@ -6,7 +6,11 @@ window.onload = function() {
     question: document.querySelector('#question'),
     response: document.querySelector('#response')
   }
-  let nameCollector = [];
+  let player = {
+    name: [],
+    points: 0,
+  }
+  let lovemeter = []
 
 //make an array of an object of questions (see picture)
   let questions = [
@@ -43,28 +47,17 @@ window.onload = function() {
       ]
     }
   ]
+let dogResponses = ['Are you having a ruff day', 'Ummm...sure OK', 'Ex-squeeze me?']
 
-  let dogResponses = ['Are you having a ruff day', 'Ummm...sure OK', 'Ex-squeeze me?']
+let currentIndex = 0;
 
-console.log(questions.question2);
 
-//USER QUESTIONS
-//make user questions populate function
-//box slides in
-//question appears
-//user selects answer
-//store answer
-//box slides out
+let choiceA = document.querySelector('#choiceA');
+let choiceB = document.querySelector('#choiceB');
+let choiceC = document.querySelector('#choiceC');
+let choiceD = document.querySelector('#choiceD');
+let responsebox = document.querySelector('#responsebox');
 
-//LOVEMETER FUNCTION
-//store value from answer
-//push hearts into lovemeter
-
-//DOG RESPONSE FUNCTION
-//dog response box slides in
-//make dog response function
-//randomize dog responses
-//have dog use user input
 
 // //win function
 //   function getWinner() {
@@ -81,6 +74,7 @@ console.log(questions.question2);
 
 //make startgame function
   //grab the start button
+  let counter = 0;
   let playButton = document.querySelector('#play');
   let homepage = document.querySelector('#homepage');
   let gamepage = document.querySelector('#gamepage');
@@ -92,58 +86,103 @@ console.log(questions.question2);
     //hide home page and show game page
     homepage.style.visibility='hidden';
     gamepage.style.visibility='visible';
-    //grab user input name and store it in the collector array
+    //grab user input name and store it in the object
     let enteredName = document.querySelector('#input').value;
-    nameCollector.push(enteredName);
+    player.name.push(enteredName);
      //if they input something
     // if (enteredName !== null) {
     //   //adding this player at the index of 0 is equal to the object
     //   alert('Let\'s get our lovin\' on ' + enteredName);
     // }
-    makeQuestion();
+    makeQuestion(counter);
   }
  };
 
-    let questionask = document.querySelector('#question');
-    let choiceA = document.querySelector('#choiceA');
-    let choiceB = document.querySelector('#choiceB');
-    let choiceC = document.querySelector('#choiceC');
-    let choiceD = document.querySelector('#choiceD');
-    let responsebox = document.querySelector('#responsebox');
 
   //loop through the questions for user to select answer
-  function makeQuestion() {
-    for (let i = 0; i <= questions.length; i++) {
-    questionask.innerHTML = questions[i].ask;
-    choiceA.innerHTML = questions[i].answers[0].word;
-    choiceB.innerHTML = questions[i].answers[1].word;
-    choiceC.innerHTML = questions[i].answers[2].word;
-    choiceD.innerHTML = questions[i].answers[3].word;
+  function makeQuestion(number) {
+    // loop through all of the questions
+      let questionask = document.querySelector('#question');
+      //print the current question
+      questionask.innerHTML = questions[number].ask;
+      //loop through all of the answers
+      for (let j=0; j < questions[number].answers.length; j++){
+        let answer = document.querySelectorAll('.answer');
+        //print the current answer
+        answer[j].innerHTML = questions[number].answers[j].word;
+        //grab the current points
+        answer[j].points = questions[number].answers[j].points;
+        //store the points in a variable
+        let nodePoints = answer[j].points;
+        //add event listener
+        answer[j].addEventListener('click', function(){
+          //stores points - by giving player.points a value
+          player.points += nodePoints;
+          console.log(player.points);
+          //render the points into hearts
+          let score = player.points;
+          //loop through the score
+          // for (let n=0; n < score.length; n++) {
+            //change the score into a heart
+            score.innerHTML = document.querySelector('#hearts');
+          // the value is the points attribute we gave each answer
+          // }
+        });
+      };
+
+    // WHAT IS THE CURRENT QUESTION
+    // questions[currentIndex];
+    // questionask.innerHTML = questions[currentIndex].ask;
+    // choiceA.innerHTML = questions[currentIndex].answers[0].word;
+    // choiceB.innerHTML = questions[currentIndex].answers[1].word;
+    // choiceC.innerHTML = questions[currentIndex].answers[2].word;
+    // choiceD.innerHTML = questions[currentIndex].answers[3].word;
+    // choiceA.addEventListener('click', lovemeter);
+    // choiceB.addEventListener('click', lovemeter);
+    // choiceC.addEventListener('click', lovemeter);
+    // choiceD.addEventListener('click', lovemeter);
     //add event listener
-    let selection = document.querySelector('.answer');
-    selection.addEventListener('click', lovemeter);
-    let score = questions[i].answers[0].points
 
 
-    //wait for click
-    //store value of answer selected
-    //push value to lovemeter
+  dogTalk();
+  //add to the counter
+  counter++;
+
+  // - could put in a conditional that runs every other time except index 0
+  // wait for click
+  // store value of answer selected
+  // make question slide out and dog response slide in
   }
-    //make question slide out and dog response slide in
-    dogTalk();
-  }
+
+  // function lovemeter(event) {
+  //   // store points in player name
+  //   let answer = document.querySelectorAll('.answer');
+  //   player.points = answer[event.target].points;
+  //   // console.log('the thing we clicked --> ', event.target');
+  //   // who got clicked
+  //   // for (let i=0; i < questions[i].answers.length; i++)
+  //   // what is the current question
+
+  //   // grab value from object clicked
+  //   // add value in collector
+  //   // loop through collector to add a heart for each value
+  //   // push up heart to lovemeter
+  //   // when values reach a certain amount, winner is announced and game is over
+  //   //
+  //   }
 
 //make dog respond
   function dogTalk() {
-    for (let i = 0; i <= dogResponses.length; i++) {
-      responsebox.innerHTML = dogResponses[i];
+    for (let i = 0; i < dogResponses.length; i++){
+    responsebox.innerHTML = dogResponses[i];
       //have dog talk using user input
+      //maybe use math.random
     }
   }
 
 //reset function
   //grab the reset button
-  let resetButton = document.querySelector('#reset')
+  let resetButton = document.querySelector('#reset');
   //when the button is clicked, reset game
   if(resetButton){
   resetButton.addEventListener('click', reset);
@@ -158,3 +197,4 @@ console.log(questions.question2);
 
 
 }
+
