@@ -121,12 +121,17 @@ let responsebox = document.querySelector('#responsebox');
           console.log(player.points);
           //render the points into hearts
           let score = player.points;
+          let hearts = ' ';
+
           //loop through the score
-          // for (let n=0; n < score.length; n++) {
-            //change the score into a heart
-            score.innerHTML = document.querySelector('#hearts');
-          // the value is the points attribute we gave each answer
-          // }
+          for (let n=0; n < score; n++) {
+          //change the score into a heart
+          hearts += '&hearts;'
+
+          }
+          document.querySelector('#hearts').innerHTML = hearts;
+          dogTalk();
+          counter++
         });
       };
 
@@ -144,14 +149,22 @@ let responsebox = document.querySelector('#responsebox');
     //add event listener
 
 
-  dogTalk();
+
   //add to the counter
-  counter++;
+
 
   // - could put in a conditional that runs every other time except index 0
   // wait for click
   // store value of answer selected
   // make question slide out and dog response slide in
+  }
+  function nextQuestion () {
+    for (let j=0; j < questions[number].answers.length; j++){
+      let answer = document.querySelectorAll('.answer');
+      answer[j].addEventListener('click', function(){
+        makeQuestion();
+      });
+    }
   }
 
   // function lovemeter(event) {
@@ -173,6 +186,10 @@ let responsebox = document.querySelector('#responsebox');
 
 //make dog respond
   function dogTalk() {
+    const questionbox = document.querySelector('#questionbox')
+    const responsebox = document.querySelector('#responsebox')
+    responsebox.style.visibility='visible';
+    questionbox.style.visibility='hidden';
     for (let i = 0; i < dogResponses.length; i++){
     responsebox.innerHTML = dogResponses[i];
       //have dog talk using user input

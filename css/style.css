@@ -89,7 +89,18 @@ body {
     color: hotpink;
 }
 
+#next {
+  display: inline;
+}
+
+#reset {
+  display: inline;
+}
+
+
 #responsebox {
+  display: flex;
+  position: relative;
   border: 3px solid black;
   height: 200px;
   width: 474px;
