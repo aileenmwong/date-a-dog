@@ -10,7 +10,6 @@ window.onload = function() {
     name: [],
     points: 0,
   }
-  let lovemeter = []
 
 //make an array of an object of questions (see picture)
   let questions = [
@@ -51,7 +50,6 @@ let dogResponses = ['Are you having a ruff day', 'Ummm...sure OK', 'Ex-squeeze m
 
 let currentIndex = 0;
 
-
 let choiceA = document.querySelector('#choiceA');
 let choiceB = document.querySelector('#choiceB');
 let choiceC = document.querySelector('#choiceC');
@@ -59,18 +57,18 @@ let choiceD = document.querySelector('#choiceD');
 let responsebox = document.querySelector('#responsebox');
 
 
-// //win function
-//   function getWinner() {
-//     //if (hearts === 18){
-//       //winner is printed in the the result box
-//       document.querySelector('#lovemeter').innerHTML = 'It\'s a match!';
-//       //remove event listener
-//     }
-//     //else if (hearts === 18){
-//       //winner is printed in the the result box
-//       document.querySelector('#lovemeter').innerHTML = 'You\'re barking up the wrong tree';
-//       //remove event listener
-//     };
+//win function
+  function getWinner() {
+    if (hearts === 18){
+      //winner is printed in the the result box
+      document.querySelector('#lovemeter').innerHTML = 'It\'s a match!';
+      //remove event listener
+    }
+    else if (hearts !== 18){
+      //winner is printed in the the result box
+      document.querySelector('#lovemeter').innerHTML = 'You\'re barking up the wrong tree';
+      //remove event listener
+    };
 
 //make startgame function
   //grab the start button
@@ -98,10 +96,14 @@ let responsebox = document.querySelector('#responsebox');
   }
  };
 
-
   //loop through the questions for user to select answer
   function makeQuestion(number) {
+    const questionbox = document.querySelector('#questionbox')
+    const responsebox = document.querySelector('#responsebox')
+    responsebox.style.visibility='hidden';
+    questionbox.style.visibility='visible';
     // loop through all of the questions
+    // for (let i=0; i < questions[number].length; i++) {
       let questionask = document.querySelector('#question');
       //print the current question
       questionask.innerHTML = questions[number].ask;
@@ -122,18 +124,20 @@ let responsebox = document.querySelector('#responsebox');
           //render the points into hearts
           let score = player.points;
           let hearts = ' ';
-
           //loop through the score
           for (let n=0; n < score; n++) {
-          //change the score into a heart
-          hearts += '&hearts;'
-
+            //change the score into a heart
+            hearts += '&hearts;'
           }
           document.querySelector('#hearts').innerHTML = hearts;
           dogTalk();
-          counter++
+          //add to the counter
+        counter++
         });
+        console.log(counter);
       };
+    // }
+  }
 
     // WHAT IS THE CURRENT QUESTION
     // questions[currentIndex];
@@ -148,55 +152,34 @@ let responsebox = document.querySelector('#responsebox');
     // choiceD.addEventListener('click', lovemeter);
     //add event listener
 
-
-
-  //add to the counter
-
-
-  // - could put in a conditional that runs every other time except index 0
-  // wait for click
-  // store value of answer selected
-  // make question slide out and dog response slide in
-  }
-  function nextQuestion () {
-    for (let j=0; j < questions[number].answers.length; j++){
-      let answer = document.querySelectorAll('.answer');
-      answer[j].addEventListener('click', function(){
-        makeQuestion();
-      });
-    }
-  }
-
-  // function lovemeter(event) {
-  //   // store points in player name
-  //   let answer = document.querySelectorAll('.answer');
-  //   player.points = answer[event.target].points;
-  //   // console.log('the thing we clicked --> ', event.target');
-  //   // who got clicked
-  //   // for (let i=0; i < questions[i].answers.length; i++)
-  //   // what is the current question
-
-  //   // grab value from object clicked
-  //   // add value in collector
-  //   // loop through collector to add a heart for each value
-  //   // push up heart to lovemeter
-  //   // when values reach a certain amount, winner is announced and game is over
-  //   //
-  //   }
-
 //make dog respond
   function dogTalk() {
     const questionbox = document.querySelector('#questionbox')
     const responsebox = document.querySelector('#responsebox')
+    const nextbutton = document.querySelector('#next')
+    //hide response box and show question box
     responsebox.style.visibility='visible';
     questionbox.style.visibility='hidden';
-    for (let i = 0; i < dogResponses.length; i++){
-    responsebox.innerHTML = dogResponses[i];
-      //have dog talk using user input
-      //maybe use math.random
+    //loop through the responses and grab a response
+    for (var i = dogResponses.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1))
+    responsebox.innerHTML = dogResponses[j] + ' ' + player.name;
     }
-  }
+    //push used answer into an array
+    //check array if answer is used, then dont use it
+    //if not randomize again
 
+    //add a click function to make the next question
+      if (nextbutton) {
+      nextbutton.addEventListener('click',function() {
+        makeQuestion(counter);
+      });
+        //have dog talk using user input
+        //maybe use math.random
+
+    }
+
+  }
 //reset function
   //grab the reset button
   let resetButton = document.querySelector('#reset');
@@ -204,14 +187,9 @@ let responsebox = document.querySelector('#responsebox');
   if(resetButton){
   resetButton.addEventListener('click', reset);
   function reset() {
-    //hide game page and show home page
-    // homepage.style.visibility='visible';
-    // gamepage.style.visibility='hidden';
     location.reload();
   }
   };
-
-
 
 }
 
