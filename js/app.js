@@ -44,59 +44,54 @@ window.onload = function() {
         points: 3,
       },
       ]
-    }
+    },
+    {ask: 'What is your favorite activity?',
+      answers: [
+      { word: 'running',
+        points: 0,
+      },
+      { word: 'sleeping',
+        points: 1,
+      },
+      { word: 'snacking',
+        points: 2,
+      },
+      { word: 'farting',
+        points: 3,
+      },
+      ]
+    },
   ]
 let dogResponses = ['Are you having a ruff day', 'Ummm...sure OK', 'Ex-squeeze me?']
 
 let currentIndex = 0;
-
+let counter = 0;
 let choiceA = document.querySelector('#choiceA');
 let choiceB = document.querySelector('#choiceB');
 let choiceC = document.querySelector('#choiceC');
 let choiceD = document.querySelector('#choiceD');
 let responsebox = document.querySelector('#responsebox');
+let playButton = document.querySelector('#play');
+let homepage = document.querySelector('#homepage');
+let gamepage = document.querySelector('#gamepage');
 
-
-//win function
-  function getWinner() {
-    if (hearts === 18){
-      //winner is printed in the the result box
-      document.querySelector('#lovemeter').innerHTML = 'It\'s a match!';
-      //remove event listener
-    }
-    else if (hearts !== 18){
-      //winner is printed in the the result box
-      document.querySelector('#lovemeter').innerHTML = 'You\'re barking up the wrong tree';
-      //remove event listener
-    };
-
-//make startgame function
-  //grab the start button
-  let counter = 0;
-  let playButton = document.querySelector('#play');
-  let homepage = document.querySelector('#homepage');
-  let gamepage = document.querySelector('#gamepage');
-  //when button is clicked, start game
+//when button is clicked, start game
   if(playButton){
   playButton.addEventListener('click', start);
 
-  function start() {
-    //hide home page and show game page
-    homepage.style.visibility='hidden';
-    gamepage.style.visibility='visible';
-    //grab user input name and store it in the object
-    let enteredName = document.querySelector('#input').value;
-    player.name.push(enteredName);
-     //if they input something
-    // if (enteredName !== null) {
-    //   //adding this player at the index of 0 is equal to the object
-    //   alert('Let\'s get our lovin\' on ' + enteredName);
-    // }
-    makeQuestion(counter);
-  }
- };
+    function start() {
+      //hide home page and show game page
+      homepage.style.visibility='hidden';
+      gamepage.style.visibility='visible';
+      //grab user input name and store it in the object
+      let enteredName = document.querySelector('#input').value;
+      player.name.push(enteredName);
+      //call the makeQuestion function at the counter
+      makeQuestion(counter);
+    }
+  };
 
-  //loop through the questions for user to select answer
+
   function makeQuestion(number) {
     const questionbox = document.querySelector('#questionbox')
     const responsebox = document.querySelector('#responsebox')
@@ -117,7 +112,8 @@ let responsebox = document.querySelector('#responsebox');
         //store the points in a variable
         let nodePoints = answer[j].points;
         //add event listener
-        answer[j].addEventListener('click', function(){
+      }
+      questionbox.addEventListener('click', function(){
           //stores points - by giving player.points a value
           player.points += nodePoints;
           console.log(player.points);
@@ -128,6 +124,7 @@ let responsebox = document.querySelector('#responsebox');
           for (let n=0; n < score; n++) {
             //change the score into a heart
             hearts += '&hearts;'
+            console.log(hearts)
           }
           document.querySelector('#hearts').innerHTML = hearts;
           dogTalk();
@@ -135,6 +132,7 @@ let responsebox = document.querySelector('#responsebox');
         counter++
         });
         console.log(counter);
+
       };
     // }
   }
@@ -160,7 +158,7 @@ let responsebox = document.querySelector('#responsebox');
     //hide response box and show question box
     responsebox.style.visibility='visible';
     questionbox.style.visibility='hidden';
-    //loop through the responses and grab a response
+    //loop through the responses and grab a random response
     for (var i = dogResponses.length - 1; i > 0; i--) {
     var j = Math.floor(Math.random() * (i + 1))
     responsebox.innerHTML = dogResponses[j] + ' ' + player.name;
@@ -174,12 +172,23 @@ let responsebox = document.querySelector('#responsebox');
       nextbutton.addEventListener('click',function() {
         makeQuestion(counter);
       });
-        //have dog talk using user input
-        //maybe use math.random
-
     }
-
   }
+
+  //win function
+  // function getWinner() {
+  //  //if the loop has run 10 times & player points in 27, then print its a match
+  //   if (player.points === 18){
+  //     //winner is printed in the the result box
+  //     document.querySelector('#lovemeter').innerHTML = 'It\'s a match!';
+  //     //remove event listener
+  //   }
+  //   else if (player.points !== 18){
+  //     //winner is printed in the the result box
+  //     document.querySelector('#lovemeter').innerHTML = 'You\'re barking up the wrong tree';
+  //     //remove event listener
+  //   }
+  // };
 //reset function
   //grab the reset button
   let resetButton = document.querySelector('#reset');
