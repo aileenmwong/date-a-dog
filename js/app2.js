@@ -154,11 +154,12 @@ const $gamepage = $('#gamepage');
   function dogTalk() {
     const $questionbox = $('#questionbox');
     const $responsebox = $('#responsebox');
+    const $response = $('#response');
     const $nextbutton = $('#next');
     //hide question box and show response box
     $responsebox.css('visibility','visible');
     $questionbox.css('visibility','hidden');
-    $responsebox.html(dogResponses[dogCounter] + ' ' + player.name);
+    $response.html(dogResponses[dogCounter] + ' ' + player.name);
     dogCounter++;
 
     if ($nextbutton) {

@@ -75,8 +75,40 @@ window.onload = function() {
       },
       ]
     },
+    {ask: 'Can you fight a bear?',
+      answers: [
+      { word: 'How strong do you think I am?',
+        points: 3,
+      },
+      { word: 'Obviously.',
+        points: 2,
+      },
+      { word: 'No way.',
+        points: 1,
+      },
+      { word: 'When would I ever fight a bear?',
+        points: 0,
+      },
+      ]
+    },
+    {ask: 'Would you ever ask someone to bring you doughnuts?',
+      answers: [
+      { word: 'Never.',
+        points: 3,
+      },
+      { word: 'I did yesterday.',
+        points: 2,
+      },
+      { word: 'I would love a doughnut now.',
+        points: 1,
+      },
+      { word: 'Please bring me doughnuts.',
+        points: 0,
+      },
+      ]
+    },
   ]
-let dogResponses = ['Are you having a ruff day,', 'Ummm...sure OK,', 'Ex-squeeze me,', 'What dat again,']
+let dogResponses = ['Mother Pupper,', 'That\'s im-paw-sible,', 'Are you having a ruff day,', 'Ummm...sure OK,', 'Ex-squeeze me,', 'What dat again,']
 
 let responsebox = document.querySelector('#responsebox');
 let playButton = document.querySelector('#submit');
@@ -156,11 +188,12 @@ let gamepage = document.querySelector('#gamepage');
   function dogTalk() {
     const questionbox = document.querySelector('#questionbox');
     const responsebox = document.querySelector('#responsebox');
+    const response = document.querySelector('#response');
     const nextbutton = document.querySelector('#next');
     //hide response box and show question box
     responsebox.style.visibility='visible';
     questionbox.style.visibility='hidden';
-    responsebox.innerHTML = dogResponses[dogCounter] + ' ' + player.name;
+    response.innerHTML = dogResponses[dogCounter] + ' ' + player.name;
     dogCounter++;
 
     if (nextbutton) {
@@ -175,7 +208,7 @@ let gamepage = document.querySelector('#gamepage');
     const lovemeter = document.querySelector('#lovemeter')
     const winnerbox = document.querySelector('#winnerbox')
     //if the loop has run 10 times & player points in 27, then print its a match
-    if ((player.points >= 6) && (counter === 4)){
+    if ((player.points >= 10) && (counter === 6)){
       //winner is printed in the the result box
       winnerbox.innerHTML = 'It\'s official: Scout and ' + player.name + ' are in love!';
       //toggle off next button
@@ -185,7 +218,7 @@ let gamepage = document.querySelector('#gamepage');
       winnerbox.style.visibility='visible';
 
     }
-    else if ((player.points <= 6) && (counter === 4)){
+    else if ((player.points <= 15) && (counter === 6)){
       //winner is printed in the the result box
       winnerbox.innerHTML = 'You\'re barking up the wrong tree! Get outta here ' + player.name + '!';
       //toggle off next button

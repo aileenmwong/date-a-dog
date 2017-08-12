@@ -99,8 +99,15 @@ body {
     color: hotpink;
 }
 
+#response {
+  position: relative;
+}
+
 #next {
+  position: relative;
   display: inline;
+  z-index: 2;
+  visbility: visible;
 }
 
 #reset {
@@ -110,6 +117,7 @@ body {
 
 #responsebox {
   display: flex;
+  flex-direction: column;
   position: relative;
   border: 1px solid black;
   height: 200px;
