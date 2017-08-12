@@ -10,6 +10,8 @@ window.onload = function() {
     name: [],
     points: 0,
   }
+  // let currentIndex = 0;
+  let counter = 0;
 
 //make an array of an object of questions (see picture)
   let questions = [
@@ -64,8 +66,8 @@ window.onload = function() {
   ]
 let dogResponses = ['Are you having a ruff day', 'Ummm...sure OK', 'Ex-squeeze me?']
 
-let currentIndex = 0;
-let counter = 0;
+// let tempQuestion = []
+
 let choiceA = document.querySelector('#choiceA');
 let choiceB = document.querySelector('#choiceB');
 let choiceC = document.querySelector('#choiceC');
@@ -75,45 +77,59 @@ let playButton = document.querySelector('#play');
 let homepage = document.querySelector('#homepage');
 let gamepage = document.querySelector('#gamepage');
 
+// for (let i=0; i<questions.length; i++) {
+//   tempQuestion.push(questions[i]);
+//   questions.splice(i, 1)
+// }
+
+
 //when button is clicked, start game
   if(playButton){
   playButton.addEventListener('click', start);
 
-    function start() {
-      //hide home page and show game page
-      homepage.style.visibility='hidden';
-      gamepage.style.visibility='visible';
-      //grab user input name and store it in the object
-      let enteredName = document.querySelector('#input').value;
-      player.name.push(enteredName);
-      //call the makeQuestion function at the counter
-      makeQuestion(counter);
-    }
-  };
+  function start() {
+    //hide home page and show game page
+    homepage.style.visibility='hidden';
+    gamepage.style.visibility='visible';
+    //grab user input name and store it in the object
+    let enteredName = document.querySelector('#input').value;
+    player.name.push(enteredName);
+    //call the makeQuestion function at the counter
+    makeQuestion(counter);
+  }
+ };
 
-
-  function makeQuestion(number) {
+  //loop through the questions for user to select answer
+  function makeQuestion() {
     const questionbox = document.querySelector('#questionbox')
     const responsebox = document.querySelector('#responsebox')
     responsebox.style.visibility='hidden';
     questionbox.style.visibility='visible';
     // loop through all of the questions
-    // for (let i=0; i < questions[number].length; i++) {
+    // for (let i=0; i < questions.length; i++) {
+    //   console.log(questions[i]);
       let questionask = document.querySelector('#question');
       //print the current question
-      questionask.innerHTML = questions[number].ask;
+      questionask.innerHTML = questions[counter].ask;
       //loop through all of the answers
-      for (let j=0; j < questions[number].answers.length; j++){
+      for (let j=0; j < questions[counter].answers.length; j++){
         let answer = document.querySelectorAll('.answer');
         //print the current answer
-        answer[j].innerHTML = questions[number].answers[j].word;
-        //grab the current points
-        answer[j].points = questions[number].answers[j].points;
-        //store the points in a variable
-        let nodePoints = answer[j].points;
-        //add event listener
+        answer[j].innerHTML = questions[counter].answers[j].word;
       }
-      questionbox.addEventListener('click', function(){
+    }
+    makeHearts();
+
+
+  function makeHearts(){
+    for (let i=0; i < questions[counter].answers.length; i++){
+      let answer = document.querySelectorAll('.answer');
+        //grab the current points
+        answer[i].points = questions[counter].answers[i].points;
+        //store the points in a variable
+        let nodePoints = answer[i].points;
+        //add event listener
+        answer[i].addEventListener('click', function(){
           //stores points - by giving player.points a value
           player.points += nodePoints;
           console.log(player.points);
@@ -124,18 +140,26 @@ let gamepage = document.querySelector('#gamepage');
           for (let n=0; n < score; n++) {
             //change the score into a heart
             hearts += '&hearts;'
-            console.log(hearts)
           }
+          getWinner();
+          counter++;
+          console.log(counter);
           document.querySelector('#hearts').innerHTML = hearts;
           dogTalk();
-          //add to the counter
-        counter++
         });
-        console.log(counter);
+      }
+      }
 
-      };
-    // }
-  }
+
+    //have a temporary variable to store 1 question
+    //store 1 question on screen at a time
+    //a function will spit out that 1 question
+    //feed it to the make question function
+    //that temporary array only holds one question
+    //remove question when done with
+
+    //increment counter to get the next question so you can add the index in the bank
+
 
     // WHAT IS THE CURRENT QUESTION
     // questions[currentIndex];
@@ -175,20 +199,19 @@ let gamepage = document.querySelector('#gamepage');
     }
   }
 
-  //win function
-  // function getWinner() {
-  //  //if the loop has run 10 times & player points in 27, then print its a match
-  //   if (player.points === 18){
-  //     //winner is printed in the the result box
-  //     document.querySelector('#lovemeter').innerHTML = 'It\'s a match!';
-  //     //remove event listener
-  //   }
-  //   else if (player.points !== 18){
-  //     //winner is printed in the the result box
-  //     document.querySelector('#lovemeter').innerHTML = 'You\'re barking up the wrong tree';
-  //     //remove event listener
-  //   }
-  // };
+  function getWinner() {
+   //if the loop has run 10 times & player points in 27, then print its a match
+    if ((player.points <= 3) && (counter === 3)){
+      //winner is printed in the the result box
+      document.querySelector('#lovemeter').innerHTML = 'You guys are in love!';
+      //remove event listener
+    }
+    else if ((player.points >= 3) && (counter === 3)){
+      //winner is printed in the the result box
+      document.querySelector('#lovemeter').innerHTML = 'You\'re barking up the wrong tree';
+      //remove event listener
+    }
+  }
 //reset function
   //grab the reset button
   let resetButton = document.querySelector('#reset');
