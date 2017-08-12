@@ -12,6 +12,7 @@ window.onload = function() {
   }
   // let currentIndex = 0;
   let counter = 0;
+  let dogCounter = 0;
 
 //make an array of an object of questions (see picture)
   let questions = [
@@ -63,10 +64,24 @@ window.onload = function() {
       },
       ]
     },
+    {ask: 'What do you like to do on the weekends?',
+      answers: [
+      { word: 'ride bikes',
+        points: 3,
+      },
+      { word: 'roll in the grass',
+        points: 2,
+      },
+      { word: 'go for a walk',
+        points: 1,
+      },
+      { word: 'every day is the weekened!',
+        points: 0,
+      },
+      ]
+    },
   ]
-let dogResponses = ['Are you having a ruff day', 'Ummm...sure OK', 'Ex-squeeze me?']
-
-// let tempQuestion = []
+let dogResponses = ['Are you having a ruff day,', 'Ummm...sure OK,', 'Ex-squeeze me,', 'What dat again,']
 
 let choiceA = document.querySelector('#choiceA');
 let choiceB = document.querySelector('#choiceB');
@@ -76,11 +91,6 @@ let responsebox = document.querySelector('#responsebox');
 let playButton = document.querySelector('#play');
 let homepage = document.querySelector('#homepage');
 let gamepage = document.querySelector('#gamepage');
-
-// for (let i=0; i<questions.length; i++) {
-//   tempQuestion.push(questions[i]);
-//   questions.splice(i, 1)
-// }
 
 
 //when button is clicked, start game
@@ -129,8 +139,8 @@ let gamepage = document.querySelector('#gamepage');
         //store the points in a variable
         let nodePoints = answer[i].points;
         //add event listener
-        answer[i].addEventListener('click', function(){
-          //stores points - by giving player.points a value
+        answer[i].addEventListener('click', function lovemeter(){
+          //stores points - by giving player.points a value and adding
           player.points += nodePoints;
           console.log(player.points);
           //render the points into hearts
@@ -141,25 +151,14 @@ let gamepage = document.querySelector('#gamepage');
             //change the score into a heart
             hearts += '&hearts;'
           }
-          getWinner();
           counter++;
           console.log(counter);
           document.querySelector('#hearts').innerHTML = hearts;
           dogTalk();
+          getWinner();
         });
       }
       }
-
-
-    //have a temporary variable to store 1 question
-    //store 1 question on screen at a time
-    //a function will spit out that 1 question
-    //feed it to the make question function
-    //that temporary array only holds one question
-    //remove question when done with
-
-    //increment counter to get the next question so you can add the index in the bank
-
 
     // WHAT IS THE CURRENT QUESTION
     // questions[currentIndex];
@@ -182,15 +181,13 @@ let gamepage = document.querySelector('#gamepage');
     //hide response box and show question box
     responsebox.style.visibility='visible';
     questionbox.style.visibility='hidden';
-    //loop through the responses and grab a random response
-    for (var i = dogResponses.length - 1; i > 0; i--) {
-    var j = Math.floor(Math.random() * (i + 1))
-    responsebox.innerHTML = dogResponses[j] + ' ' + player.name;
-    }
-    //push used answer into an array
-    //check array if answer is used, then dont use it
-    //if not randomize again
-
+    responsebox.innerHTML = dogResponses[dogCounter] + ' ' + player.name;
+    dogCounter++;
+    // //loop through the responses and grab a random response
+    // for (var i = dogResponses.length - 1; i > 0; i--) {
+    // var j = Math.floor(Math.random() * (i + 1))
+    // responsebox.innerHTML = dogResponses[j] + ' ' + player.name;
+    // }
     //add a click function to make the next question
       if (nextbutton) {
       nextbutton.addEventListener('click',function() {
@@ -200,18 +197,24 @@ let gamepage = document.querySelector('#gamepage');
   }
 
   function getWinner() {
+    const nextButton = document.querySelector('#next')
    //if the loop has run 10 times & player points in 27, then print its a match
-    if ((player.points <= 3) && (counter === 3)){
+    if ((player.points >= 6) && (counter === 4)){
       //winner is printed in the the result box
-      document.querySelector('#lovemeter').innerHTML = 'You guys are in love!';
-      //remove event listener
+      document.querySelector('#lovemeter').innerHTML = 'It\'s official: Scout and ' + player.name + ' are in love!';
+      //toggle off next button
+      nextButton.style.visibility='hidden';
+      responsebox.style.visibility='hidden';
     }
-    else if ((player.points >= 3) && (counter === 3)){
+    else if ((player.points <= 6) && (counter === 4)){
       //winner is printed in the the result box
-      document.querySelector('#lovemeter').innerHTML = 'You\'re barking up the wrong tree';
-      //remove event listener
+      document.querySelector('#lovemeter').innerHTML = 'You\'re barking up the wrong tree!. Get outta here ' + player.name + '!';
+      //toggle off next button
+      nextButton.style.visibility='hidden';
+      responsebox.style.visibility='hidden';
     }
   }
+
 //reset function
   //grab the reset button
   let resetButton = document.querySelector('#reset');
