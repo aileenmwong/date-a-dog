@@ -78,24 +78,24 @@ window.onload = function() {
   ]
 let dogResponses = ['Are you having a ruff day,', 'Ummm...sure OK,', 'Ex-squeeze me,', 'What dat again,']
 
-let responsebox = document.querySelector('#responsebox');
-let playButton = document.querySelector('#submit');
-let homepage = document.querySelector('#homepage');
-let gamepage = document.querySelector('#gamepage');
+const $responsebox = $('#responsebox');
+const $playButton = $('#submit');
+const $homepage = $('#homepage');
+const $gamepage = $('#gamepage');
 
 
   //when button is clicked, start game
-  if(playButton){
-  playButton.addEventListener('submit', start);
+  if($playButton){
+  $playButton.submit(start);
 
     function start(event) {
       event.preventDefault();
       //hide home page and show game page
-      homepage.style.visibility='hidden';
-      gamepage.style.visibility='visible';
+      $homepage.css('visibility', 'hidden');
+      $gamepage.css('visibility', 'visible');
       //grab user input name and store it in the object
-      let enteredName = document.querySelector('#input').value;
-      player.name.push(enteredName);
+      let $enteredName = $('#input').val();
+      player.name.push($enteredName);
       //call the makeQuestion function at the counter
       makeQuestion(counter);
     }
@@ -103,21 +103,19 @@ let gamepage = document.querySelector('#gamepage');
 
   //loop through the questions for user to select answer
   function makeQuestion() {
-    const questionbox = document.querySelector('#questionbox');
-    const responsebox = document.querySelector('#responsebox');
-    responsebox.style.visibility='hidden';
-    questionbox.style.visibility='visible';
+    const $questionbox = $('#questionbox');
+    const $responsebox = $('#responsebox');
+    $responsebox.css('visibility','hidden');
+    $questionbox.css('visibility','visible');
     // loop through all of the questions
-    // for (let i=0; i < questions.length; i++) {
-    //   console.log(questions[i]);
-      let questionask = document.querySelector('#question');
+      let $questionask = $('#question');
       //print the current question
-      questionask.innerHTML = questions[counter].ask;
+      $questionask.html(questions[counter].ask);
       //loop through all of the answers
       for (let j=0; j < questions[counter].answers.length; j++){
-        let answer = document.querySelectorAll('.answer');
+        let $answer = $('.answer');
         //print the current answer
-        answer[j].innerHTML = questions[counter].answers[j].word;
+        $answer[j].append(questions[counter].answers[j].word);
       }
     }
     makeHearts();
@@ -125,13 +123,13 @@ let gamepage = document.querySelector('#gamepage');
 
   function makeHearts(){
     for (let i=0; i < questions[counter].answers.length; i++){
-      let answer = document.querySelectorAll('.answer');
+      let $answer = $('.answer');
         //grab the current points
-        answer[i].points = questions[counter].answers[i].points;
+        $answer[i].points = questions[counter].answers[i].points;
         //store the points in a variable
-        let nodePoints = answer[i].points;
+        let nodePoints = $answer[i].points;
         //add event listener
-        answer[i].addEventListener('click', function lovemeter(){
+        $answer[i].click(function(){
           //stores points - by giving player.points a value and adding
           player.points += nodePoints;
           console.log(player.points);
@@ -145,7 +143,7 @@ let gamepage = document.querySelector('#gamepage');
           }
           counter++;
           console.log(counter);
-          document.querySelector('#hearts').innerHTML = hearts;
+          $('#hearts').html(hearts);
           dogTalk();
           getWinner();
         });
@@ -154,54 +152,53 @@ let gamepage = document.querySelector('#gamepage');
 
   //make dog respond
   function dogTalk() {
-    const questionbox = document.querySelector('#questionbox');
-    const responsebox = document.querySelector('#responsebox');
-    const nextbutton = document.querySelector('#next');
-    //hide response box and show question box
-    responsebox.style.visibility='visible';
-    questionbox.style.visibility='hidden';
-    responsebox.innerHTML = dogResponses[dogCounter] + ' ' + player.name;
+    const $questionbox = $('#questionbox');
+    const $responsebox = $('#responsebox');
+    const $nextbutton = $('#next');
+    //hide question box and show response box
+    $responsebox.css('visibility','visible');
+    $questionbox.css('visibility','hidden');
+    $responsebox.html(dogResponses[dogCounter] + ' ' + player.name);
     dogCounter++;
 
-    if (nextbutton) {
-      nextbutton.addEventListener('click',function() {
+    if ($nextbutton) {
+      $nextbutton.click(function() {
         makeQuestion(counter);
       });
     }
   }
 
   function getWinner() {
-    const nextButton = document.querySelector('#next')
-    const lovemeter = document.querySelector('#lovemeter')
-    const winnerbox = document.querySelector('#winnerbox')
+    const $nextButton = $('#next')
+    const $lovemeter = $('#lovemeter')
+    const $winnerbox = $('#winnerbox')
     //if the loop has run 10 times & player points in 27, then print its a match
     if ((player.points >= 6) && (counter === 4)){
       //winner is printed in the the result box
-      winnerbox.innerHTML = 'It\'s official: Scout and ' + player.name + ' are in love!';
+      $winnerbox.html('It\'s official: Scout and ' + player.name + ' are in love!');
       //toggle off next button
-      nextButton.style.visibility='hidden';
-      responsebox.style.visibility='hidden';
-      lovemeter.style.visibility='hidden';
-      winnerbox.style.visibility='visible';
-
+      $nextButton.css('visibility','hidden');
+      $responsebox.css('visibility','hidden');
+      $lovemeter.css('visibility','hidden');
+      $winnerbox.css('visibility','visible');
     }
     else if ((player.points <= 6) && (counter === 4)){
       //winner is printed in the the result box
-      winnerbox.innerHTML = 'You\'re barking up the wrong tree! Get outta here ' + player.name + '!';
+      $winnerbox.html('You\'re barking up the wrong tree! Get outta here ' + player.name + '!');
       //toggle off next button
-      nextButton.style.visibility='hidden';
-      responsebox.style.visibility='hidden';
-      lovemeter.style.visibility='hidden';
-      winnerbox.style.visibility='visible';
+      $nextButton.css('visibility','hidden');
+      $responsebox.css('visibility','hidden');
+      $lovemeter.css('visibility','hidden');
+      $winnerbox.css('visibility','visible');
     }
   }
 
   //reset function
   //grab the reset button
-  let resetButton = document.querySelector('#reset');
+  let $resetButton = $('#reset');
   //when the button is clicked, reset game
-  if(resetButton) {
-    resetButton.addEventListener('click', reset);
+  if($resetButton) {
+    $resetButton.click(reset);
     function reset() {
       location.reload();
   }

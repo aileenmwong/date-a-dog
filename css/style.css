@@ -1,5 +1,6 @@
 body {
   font-family: 'Poppins', sans-serif;
+  font-weight: 300;
 }
 #wrapperall {
   position: relative;
@@ -19,7 +20,16 @@ body {
 #gametitle {
   font-family: 'Passion One', cursive;
   font-size: 100px;
+  animation-name: slideDown;
+  animation-duration: 2s;
+  animation-timing-function: ease;
 }
+
+@keyframes  slideDown {
+    0%  {transform: translateY(-100%);}
+    100% {transform: translateY(0%);}
+}
+
 
 #textwrapper {
   width: 600px;
@@ -56,7 +66,7 @@ body {
 }
 
 #questionbox {
-  border: 3px solid black;
+  border: 1px solid black;
   height: 350px;
   text-transform: uppercase;
   padding: 10px;
@@ -75,7 +85,7 @@ body {
 
 #question{
 /*  border: 3px solid black;*/
-  height: 60px;
+  height: 100px;
   font-size: 24px;
 }
 
@@ -101,11 +111,13 @@ body {
 #responsebox {
   display: flex;
   position: relative;
-  border: 3px solid black;
+  border: 1px solid black;
   height: 200px;
   width: 474px;
   text-transform: uppercase;
   vertical-align: middle;
+  align-items: center;
+  justify-content: center;
   padding: 10px;
   z-index: 1;
   margin: -300px 0 0 0;
@@ -128,18 +140,40 @@ body {
   }
 }*/
 
-#lovemeter {
-  border: 3px solid black;
-  height: 100px;
-  font-size: 24px;
+#winnerbox {
+  border: 1px solid black;
+  height: 200px;
+  width: 600px;
+  font-size: 48px;
   color: black;
   padding: 10px;
+  background-color: grey;
+  text-transform: uppercase;
+  margin: 50px;
+  visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: 'Passion One', cursive;
+}
+
+#lovemeter {
+  font-family: 'Passion One', cursive;
+  border: 1px solid black;
+  height: 100px;
+  font-size: 40px;
+  color: black;
+  padding: 10px;
+  text-align: center;
   background-color: grey;
   text-transform: uppercase;
 }
 
 #hearts {
   color: hotpink;
+  margin: -2px;
+  font-size: 24px;
 }
 
 #gamewrapper {
