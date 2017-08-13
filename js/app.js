@@ -11,7 +11,7 @@ window.onload = function() {
 
 //make an array of an object of questions (see picture)
   let questions = [
-    {ask: 'Why are you single',
+    {ask: 'Why are you single?',
       answers: [
         { word: 'I\'m not, I\'m just here to get a dog!',
           points: 0,
@@ -91,7 +91,7 @@ window.onload = function() {
       },
       ]
     },
-    {ask: 'How many siblings do you have',
+    {ask: 'How many siblings do you have?',
       answers: [
       { word: 'None',
         points: 3,
@@ -123,7 +123,7 @@ window.onload = function() {
       },
       ]
     },
-    {ask: 'What would you take with you on a desert island',
+    {ask: 'What would you take with you on a desert island?',
       answers: [
       { word: 'A good stick.',
         points: 3,
@@ -172,7 +172,7 @@ window.onload = function() {
       ]
     },
   ]
-let dogResponses = ['Are you having a ruff day,', 'Bone Appetit,', 'Ummm...sure OK,', 'What dat again,', 'Don\'t terrior yourself up about it,', 'That\'s im-paw-sible,', 'Purrrfect,', 'Ex-squeeze me,', 'If I toss a stick, will you go away?', 'Doggone it,']
+let dogResponses = ['Are you having a ruff day,', 'Bone Appetit,', 'Ummm...sure OK,', 'What dat again,', 'Don\'t terrier yourself up about it,', 'That\'s im-paw-sible,', 'Purrrfect,', 'Ex-squeeze me,', 'If I toss a stick, will you go away,', 'Doggone it,']
 
 let responsebox = document.querySelector('#responsebox');
 let playButton = document.querySelector('#submit');
