@@ -253,12 +253,12 @@ body {
   height: 200px;
   width: 200px;
   z-index: 2;
-  animation: headbob 2s linear infinite;
+  animation: headbob 1.5s linear infinite;
 }
 
 @keyframes  headbob {
     0%  {transform:rotate(0deg);}
-    50% {transform:rotate(30deg);}
+    50% {transform:rotate(20deg);}
 }
 
 #picnic {

@@ -150,7 +150,7 @@ window.onload = function() {
       { word: 'Your doghouse or mine?',
         points: 1,
       },
-      { word: 'You had me a ruff.',
+      { word: 'You had me at ruff.',
         points: 0,
       },
       ]
