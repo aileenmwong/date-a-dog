@@ -11,18 +11,18 @@ window.onload = function() {
 
 //make an array of an object of questions (see picture)
   let questions = [
-    {ask: 'What is your favorite color?',
+    {ask: 'Why are you single',
       answers: [
-        { word: 'blue',
+        { word: 'I\'m not, I\'m just here to get a dog!',
           points: 0,
         },
-        { word: 'pink',
+        { word: 'Testing the waters',
           points: 1,
         },
-        { word: 'yellow',
+        { word: 'I live with my mom',
           points: 2,
         },
-        { word: 'green',
+        { word: '*Hangs head in shame*',
           points: 3,
         }
         ],
@@ -30,7 +30,7 @@ window.onload = function() {
     {ask: 'What is your favorite snack?',
       answers: [
       { word: 'bacon',
-        points: 0,
+        points: 3,
       },
       { word: 'peanuts',
         points: 1,
@@ -39,38 +39,38 @@ window.onload = function() {
         points: 2,
       },
       { word: 'carrots',
-        points: 3,
+        points: 0,
       },
       ]
     },
-    {ask: 'What is your favorite activity?',
+    {ask: 'What is your favorite hobby?',
       answers: [
       { word: 'running',
         points: 0,
       },
       { word: 'sleeping',
-        points: 1,
+        points: 3,
       },
       { word: 'snacking',
         points: 2,
       },
       { word: 'farting',
-        points: 3,
+        points: 1,
       },
       ]
     },
     {ask: 'What do you like to do on the weekends?',
       answers: [
-      { word: 'ride bikes',
-        points: 3,
-      },
-      { word: 'roll in the grass',
-        points: 2,
-      },
-      { word: 'go for a walk',
+      { word: 'Eat shoes',
         points: 1,
       },
-      { word: 'every day is the weekened!',
+      { word: 'Roll in the grass',
+        points: 2,
+      },
+      { word: 'Go for a walk',
+        points: 3,
+      },
+      { word: 'Every day is the weekend!',
         points: 0,
       },
       ]
@@ -78,7 +78,7 @@ window.onload = function() {
     {ask: 'Can you fight a bear?',
       answers: [
       { word: 'How strong do you think I am?',
-        points: 3,
+        points: 0,
       },
       { word: 'Obviously.',
         points: 2,
@@ -86,29 +86,93 @@ window.onload = function() {
       { word: 'No way.',
         points: 1,
       },
-      { word: 'When would I ever fight a bear?',
+      { word: 'You should see the bear.',
+        points: 3,
+      },
+      ]
+    },
+    {ask: 'How many siblings do you have',
+      answers: [
+      { word: 'None',
+        points: 3,
+      },
+      { word: 'One',
+        points: 2,
+      },
+      { word: 'Two',
+        points: 1,
+      },
+      { word: 'A whole litter',
         points: 0,
       },
       ]
     },
-    {ask: 'Would you ever ask someone to bring you doughnuts?',
+    {ask: 'What is your idea of the perfect date?',
       answers: [
-      { word: 'Never.',
+      { word: 'April 25th.',
         points: 3,
       },
-      { word: 'I did yesterday.',
-        points: 2,
+      { word: 'A long walk on the beach.',
+        points: 0,
       },
-      { word: 'I would love a doughnut now.',
+      { word: 'Snuggling on the couch.',
         points: 1,
       },
-      { word: 'Please bring me doughnuts.',
+      { word: 'A long belly rub.',
+        points: 2,
+      },
+      ]
+    },
+    {ask: 'What would you take with you on a desert island',
+      answers: [
+      { word: 'A good stick.',
+        points: 3,
+      },
+      { word: 'A long book.',
         points: 0,
+      },
+      { word: 'A plane.',
+        points: 2,
+      },
+      { word: 'A tennis ball.',
+        points: 1,
+      },
+      ]
+    },
+     {ask: 'What is the worst pick up line you have ever heard?',
+      answers: [
+      { word: 'I came here looking for a little tail.',
+        points: 3,
+      },
+      { word: 'Is your tail wagging or are you just happy to see me?',
+        points: 2,
+      },
+      { word: 'Your doghouse or mine?',
+        points: 1,
+      },
+      { word: 'You had me a ruff.',
+        points: 0,
+      },
+      ]
+    },
+    {ask: 'What are you looking for in a dog?',
+      answers: [
+      { word: 'A companion I can bring to work.',
+        points: 0,
+      },
+      { word: 'Someone who will eat my leftovers',
+        points: 1,
+      },
+      { word: 'An animal pal who can see ghosts.',
+        points: 3,
+      },
+      { word: 'Someone who will greet me at the door.',
+        points: 2,
       },
       ]
     },
   ]
-let dogResponses = ['Mother Pupper,', 'That\'s im-paw-sible,', 'Are you having a ruff day,', 'Ummm...sure OK,', 'Ex-squeeze me,', 'What dat again,']
+let dogResponses = ['Are you having a ruff day,', 'Bone Appetit,', 'Ummm...sure OK,', 'What dat again,', 'Don\'t terrior yourself up about it,', 'That\'s im-paw-sible,', 'Purrrfect,', 'Ex-squeeze me,', 'If I toss a stick, will you go away?', 'Doggone it,']
 
 let responsebox = document.querySelector('#responsebox');
 let playButton = document.querySelector('#submit');
@@ -208,7 +272,7 @@ let gamepage = document.querySelector('#gamepage');
     const lovemeter = document.querySelector('#lovemeter')
     const winnerbox = document.querySelector('#winnerbox')
     //if the loop has run 10 times & player points in 27, then print its a match
-    if ((player.points >= 10) && (counter === 6)){
+    if ((player.points >= 20) && (counter === 10)){
       //winner is printed in the the result box
       winnerbox.innerHTML = 'It\'s official: Scout and ' + player.name + ' are in love!';
       //toggle off next button
@@ -218,7 +282,7 @@ let gamepage = document.querySelector('#gamepage');
       winnerbox.style.visibility='visible';
 
     }
-    else if ((player.points <= 15) && (counter === 6)){
+    else if ((player.points <= 20) && (counter === 10)){
       //winner is printed in the the result box
       winnerbox.innerHTML = 'You\'re barking up the wrong tree! Get outta here ' + player.name + '!';
       //toggle off next button

@@ -174,7 +174,7 @@ const $gamepage = $('#gamepage');
     const $lovemeter = $('#lovemeter')
     const $winnerbox = $('#winnerbox')
     //if the loop has run 10 times & player points in 27, then print its a match
-    if ((player.points >= 6) && (counter === 4)){
+    if ((player.points >= 6) && (counter === 6)){
       //winner is printed in the the result box
       $winnerbox.html('It\'s official: Scout and ' + player.name + ' are in love!');
       //toggle off next button
@@ -183,7 +183,7 @@ const $gamepage = $('#gamepage');
       $lovemeter.css('visibility','hidden');
       $winnerbox.css('visibility','visible');
     }
-    else if ((player.points <= 6) && (counter === 4)){
+    else if ((player.points <= 6) && (counter === 6)){
       //winner is printed in the the result box
       $winnerbox.html('You\'re barking up the wrong tree! Get outta here ' + player.name + '!');
       //toggle off next button
