@@ -1,3 +1,5 @@
+//Vanilla Javascript version
+
 window.onload = function() {
   console.log('Love meter activated!');
 
@@ -5,11 +7,9 @@ window.onload = function() {
     name: [],
     points: 0,
   }
-  // let currentIndex = 0;
-  let counter = 0;
-  let dogCounter = 0;
 
-//make an array of an object of questions (see picture)
+
+  //make an array of an object of questions
   let questions = [
     {ask: 'Why are you single?',
       answers: [
@@ -172,13 +172,13 @@ window.onload = function() {
       ]
     },
   ]
-let dogResponses = ['Are you having a ruff day,', 'Bone Appetit,', 'Ummm...sure OK,', 'What dat again,', 'Don\'t terrier yourself up about it,', 'That\'s im-paw-sible,', 'Purrrfect,', 'Ex-squeeze me,', 'If I toss a stick, will you go away,', 'Doggone it,']
-
-let responsebox = document.querySelector('#responsebox');
-let playButton = document.querySelector('#submit');
-let homepage = document.querySelector('#homepage');
-let gamepage = document.querySelector('#gamepage');
-
+  let dogResponses = ['Are you having a ruff day,', 'Bone Appetit,', 'Ummm...sure OK,', 'What dat again,', 'Don\'t terrier yourself up about it,', 'That\'s im-paw-sible,', 'Purrrfect,', 'Ex-squeeze me,', 'If I toss a stick, will you go away,', 'Doggone it,']
+  let counter = 0;
+  let dogCounter = 0;
+  let responsebox = document.querySelector('#responsebox');
+  let playButton = document.querySelector('#submit');
+  let homepage = document.querySelector('#homepage');
+  let gamepage = document.querySelector('#gamepage');
 
   //when button is clicked, start game
   if(playButton){
@@ -189,13 +189,13 @@ let gamepage = document.querySelector('#gamepage');
       //hide home page and show game page
       homepage.style.visibility='hidden';
       gamepage.style.visibility='visible';
-      //grab user input name and store it in the object
+      //grab user input name and store it in the player object
       let enteredName = document.querySelector('#input').value;
       player.name.push(enteredName);
       //call the makeQuestion function at the counter
       makeQuestion(counter);
-    }
-  };
+    };
+  }
 
   //loop through the questions for user to select answer
   function makeQuestion() {
@@ -203,49 +203,49 @@ let gamepage = document.querySelector('#gamepage');
     const responsebox = document.querySelector('#responsebox');
     responsebox.style.visibility='hidden';
     questionbox.style.visibility='visible';
-    // loop through all of the questions
-    // for (let i=0; i < questions.length; i++) {
-    //   console.log(questions[i]);
-      let questionask = document.querySelector('#question');
-      //print the current question
-      questionask.innerHTML = questions[counter].ask;
-      //loop through all of the answers
-      for (let j=0; j < questions[counter].answers.length; j++){
-        let answer = document.querySelectorAll('.answer');
-        //print the current answer
-        answer[j].innerHTML = questions[counter].answers[j].word;
-      }
+    // create a variable called questionask
+    let questionask = document.querySelector('#question');
+    // print the current question
+    questionask.innerHTML = questions[counter].ask;
+    // loop through all of the answers
+    for (let j=0; j < questions[counter].answers.length; j++){
+      let answer = document.querySelectorAll('.answer');
+      //print the current answer
+      answer[j].innerHTML = questions[counter].answers[j].word;
+      };
     }
+    //call the makehearts function
     makeHearts();
 
 
   function makeHearts(){
     for (let i=0; i < questions[counter].answers.length; i++){
       let answer = document.querySelectorAll('.answer');
-        //grab the current points
-        answer[i].points = questions[counter].answers[i].points;
-        //store the points in a variable
-        let nodePoints = answer[i].points;
-        //add event listener
-        answer[i].addEventListener('click', function lovemeter(){
-          //stores points - by giving player.points a value and adding
-          player.points += nodePoints;
-          console.log(player.points);
-          //render the points into hearts
-          let score = player.points;
-          let hearts = ' ';
-          //loop through the score
-          for (let n=0; n < score; n++) {
-            //change the score into a heart
-            hearts += '&hearts;'
-          }
-          counter++;
-          console.log(counter);
-          document.querySelector('#hearts').innerHTML = hearts;
-          dogTalk();
-          getWinner();
-        });
-    }
+        //grab the points of the each answer
+      answer[i].points = questions[counter].answers[i].points;
+      //store the points in a variable called nodePoints
+      let nodePoints = answer[i].points;
+      //add event listener
+      answer[i].addEventListener('click', function lovemeter(){
+        //on click, add the points of the answer to the current points
+        player.points += nodePoints;
+        console.log(player.points);
+        //render the points into hearts
+        let score = player.points;
+        let hearts = ' ';
+        //loop through the score
+        for (let n=0; n < score; n++) {
+          //change the score into a heart
+          hearts += '&hearts;'
+        };
+        //increase counter
+        counter++;
+        console.log(counter);
+        document.querySelector('#hearts').innerHTML = hearts;
+        dogTalk();
+        getWinner();
+      });
+    };
   }
 
   //make dog respond
@@ -257,43 +257,45 @@ let gamepage = document.querySelector('#gamepage');
     //hide response box and show question box
     responsebox.style.visibility='visible';
     questionbox.style.visibility='hidden';
+    //print in the response box the dog's response
     response.innerHTML = dogResponses[dogCounter] + ' ' + player.name;
+    //increase dog response counter
     dogCounter++;
 
+    //when next button is clicked, run makeQuestion again
     if (nextbutton) {
       nextbutton.addEventListener('click',function() {
         makeQuestion(counter);
       });
-    }
+    };
   }
 
   function getWinner() {
     const nextButton = document.querySelector('#next')
     const lovemeter = document.querySelector('#lovemeter')
     const winnerbox = document.querySelector('#winnerbox')
-    //if the loop has run 10 times & player points in 27, then print its a match
+    //if the loop has run 10 times & player points is more than 20, then print winning statement
     if ((player.points >= 20) && (counter === 10)){
       //winner is printed in the the result box
       winnerbox.innerHTML = 'It\'s official: Scout and ' + player.name + ' are in love!';
-      //toggle off next button
+      //toggle off visibility of next button, response box, lovemeter, and winnerbox
       nextButton.style.visibility='hidden';
       responsebox.style.visibility='hidden';
       lovemeter.style.visibility='hidden';
       winnerbox.style.visibility='visible';
-
     }
+    //if the loop has run 10 times & player points is less than 20, then print losing statement
     else if ((player.points <= 20) && (counter === 10)){
-      //winner is printed in the the result box
+      //loser is printed in the the result box
       winnerbox.innerHTML = 'You\'re barking up the wrong tree! Get outta here ' + player.name + '!';
-      //toggle off next button
+      //toggle off visibility of next button, response box, lovemeter, and winnerbox
       nextButton.style.visibility='hidden';
       responsebox.style.visibility='hidden';
       lovemeter.style.visibility='hidden';
       winnerbox.style.visibility='visible';
-    }
+    };
   }
 
-  //reset function
   //grab the reset button
   let resetButton = document.querySelector('#reset');
   //when the button is clicked, reset game
@@ -301,8 +303,8 @@ let gamepage = document.querySelector('#gamepage');
     resetButton.addEventListener('click', reset);
     function reset() {
       location.reload();
-  }
+    };
   };
 
-}
+};
 

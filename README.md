@@ -6,7 +6,7 @@
 
 Ever see a dog on the street and want to take it home? Now you can! Go on a date with Scout the dog. She'll ask you classic first date questions and give you four choices to respond. There's no such thing as a wrong answer on a date, but as you know, it may not always work out. Points are based on her whims, so try your best to woo her. 
 
-[Play The Game](http://dateadog.bitballoon.com/)
+[Play The Game](https://git.generalassemb.ly/pages/aileenmwong/project-1/)
 
 ### Technologies Used ###
 
@@ -51,6 +51,9 @@ I knew I wanted to a do a dog themed choose your own adventure game, but it ende
 I would like to add more dogs with different personalities to my game. I would like for the player to be able to choose which dog they want to go on a date with. 
 
 I would also like to add sound effects and music to the game. I want to figure out how to trigger a CSS animation based on a click as well. Right now the different animations change appearance based on toggling visbility. 
+
+### Issues to solve ###
+Since I wrote my code in Vanilla Javascript, I tried to refactor it to Jquery when it was complete. Unfortunately I was not able to get the code to work, even though it's not showing me any errors. I've attached two JS files, app.js is the Vanilla Javascript, app2.js is the Jquery version which doesn't work. 
 
 ### Wireframes ### 
 

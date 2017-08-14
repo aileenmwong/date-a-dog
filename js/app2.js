@@ -1,3 +1,5 @@
+//Jquery version
+
 window.onload = function() {
   console.log('Love meter activated!');
 
@@ -5,11 +7,8 @@ window.onload = function() {
     name: [],
     points: 0,
   }
-  // let currentIndex = 0;
-  let counter = 0;
-  let dogCounter = 0;
 
-//make an array of an object of questions (see picture)
+//make an array of an object of questions
   let questions = [
     {ask: 'Why are you single',
       answers: [
@@ -172,12 +171,11 @@ window.onload = function() {
       ]
     },
   ]
-let dogResponses = ['Are you having a ruff day,', 'Bone Appetit,', 'Ummm...sure OK,', 'What dat again,', 'Don\'t terrior yourself up about it,', 'That\'s im-paw-sible,', 'Purrrfect,', 'Ex-squeeze me,', 'If I toss a stick, will you go away?', 'Doggone it,']
+  let dogResponses = ['Are you having a ruff day,', 'Bone Appetit,', 'Ummm...sure OK,', 'What dat again,', 'Don\'t terrior yourself up about it,', 'That\'s im-paw-sible,', 'Purrrfect,', 'Ex-squeeze me,', 'If I toss a stick, will you go away?', 'Doggone it,']
+  const $playButton = $('#submit');
+  let counter = 0;
+  let dogCounter = 0;
 
-const $responsebox = $('#responsebox');
-const $playButton = $('#submit');
-const $homepage = $('#homepage');
-const $gamepage = $('#gamepage');
 
 
   //when button is clicked, start game
@@ -186,6 +184,8 @@ const $gamepage = $('#gamepage');
 
     function start(event) {
       event.preventDefault();
+      const $homepage = $('#homepage');
+      const $gamepage = $('#gamepage');
       //hide home page and show game page
       $homepage.css('visibility', 'hidden');
       $gamepage.css('visibility', 'visible');
@@ -194,8 +194,8 @@ const $gamepage = $('#gamepage');
       player.name.push($enteredName);
       //call the makeQuestion function at the counter
       makeQuestion(counter);
-    }
-  };
+    };
+  }
 
   //loop through the questions for user to select answer
   function makeQuestion() {
@@ -203,47 +203,49 @@ const $gamepage = $('#gamepage');
     const $responsebox = $('#responsebox');
     $responsebox.css('visibility','hidden');
     $questionbox.css('visibility','visible');
-    // loop through all of the questions
-      let $questionask = $('#question');
-      //print the current question
-      $questionask.html(questions[counter].ask);
-      //loop through all of the answers
-      for (let j=0; j < questions[counter].answers.length; j++){
-        let $answer = $('.answer');
-        //print the current answer
-        $answer[j].append(questions[counter].answers[j].word);
-      }
-    }
-    makeHearts();
+    // create a variable called questionask
+    let $questionask = $('#question');
+    //print the current question
+    $questionask.html(questions[counter].ask);
+    //loop through all of the answers
+    for (let j=0; j < questions[counter].answers.length; j++){
+      let $answer = $('.answer');
+      //print the current answer
+      $answer[j].append(questions[counter].answers[j].word);
+    };
+  }
+  //call makeHearts function
+  makeHearts();
 
 
   function makeHearts(){
     for (let i=0; i < questions[counter].answers.length; i++){
       let $answer = $('.answer');
-        //grab the current points
-        $answer[i].points = questions[counter].answers[i].points;
-        //store the points in a variable
-        let nodePoints = $answer[i].points;
-        //add event listener
-        $answer[i].click(function(){
-          //stores points - by giving player.points a value and adding
-          player.points += nodePoints;
-          console.log(player.points);
-          //render the points into hearts
-          let score = player.points;
-          let hearts = ' ';
-          //loop through the score
-          for (let n=0; n < score; n++) {
-            //change the score into a heart
-            hearts += '&hearts;'
-          }
-          counter++;
-          console.log(counter);
-          $('#hearts').html(hearts);
-          dogTalk();
-          getWinner();
-        });
-    }
+        //grab the points of the each answer
+      $answer[i].points = questions[counter].answers[i].points;
+      //store the points in a variable called nodePoints
+      let nodePoints = $answer[i].points;
+      //add event listener
+      $answer[i].click(function (){
+        //on click, add the points of the answer to the current points
+        player.points += nodePoints;
+        console.log(player.points);
+        //render the points into hearts
+        let score = player.points;
+        let hearts = ' ';
+        //loop through the score
+        for (let n=0; n < score; n++) {
+          //change the score into a heart
+          hearts += '&hearts;'
+        }
+        //increase counter
+        counter++;
+        console.log(counter);
+        $('#hearts').html = hearts;
+        dogTalk();
+        getWinner();
+      });
+    };
   }
 
   //make dog respond
@@ -255,42 +257,47 @@ const $gamepage = $('#gamepage');
     //hide question box and show response box
     $responsebox.css('visibility','visible');
     $questionbox.css('visibility','hidden');
+    //print in the response box the dog's response
     $response.html(dogResponses[dogCounter] + ' ' + player.name);
+    //increase dog response counter
     dogCounter++;
 
+    //when next button is clicked, run makeQuestion again
     if ($nextbutton) {
       $nextbutton.click(function() {
         makeQuestion(counter);
       });
-    }
+    };
   }
 
   function getWinner() {
     const $nextButton = $('#next')
     const $lovemeter = $('#lovemeter')
     const $winnerbox = $('#winnerbox')
-    //if the loop has run 10 times & player points in 27, then print its a match
+    const $responsebox = $('#responsebox');
+    //if the loop has run 10 times & player points is more than 20, then print winning statement
     if ((player.points >= 20) && (counter === 10)){
       //winner is printed in the the result box
       $winnerbox.html('It\'s official: Scout and ' + player.name + ' are in love!');
-      //toggle off next button
+      //toggle off visibility of next button, response box, lovemeter, and winnerbox
       $nextButton.css('visibility','hidden');
       $responsebox.css('visibility','hidden');
       $lovemeter.css('visibility','hidden');
       $winnerbox.css('visibility','visible');
     }
+    //if the loop has run 10 times & player points is less than 20, then print losing statement
     else if ((player.points <= 20) && (counter === 10)){
-      //winner is printed in the the result box
+      //loser is printed in the the result box
       $winnerbox.html('You\'re barking up the wrong tree! Get outta here ' + player.name + '!');
+      //toggle off visibility of next button, response box, lovemeter, and winnerbox
       //toggle off next button
       $nextButton.css('visibility','hidden');
       $responsebox.css('visibility','hidden');
       $lovemeter.css('visibility','hidden');
       $winnerbox.css('visibility','visible');
-    }
+    };
   }
 
-  //reset function
   //grab the reset button
   let $resetButton = $('#reset');
   //when the button is clicked, reset game
@@ -298,8 +305,8 @@ const $gamepage = $('#gamepage');
     $resetButton.click(reset);
     function reset() {
       location.reload();
-  }
+    };
   };
 
-}
+};
 
