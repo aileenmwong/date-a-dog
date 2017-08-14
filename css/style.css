@@ -73,7 +73,6 @@ body {
   padding: 10px;
   background-color: grey;
 /*  visibility: hidden;*/
-/*  position: absolute;*/
   z-index: 1;
   animation-name: questionslide;
   animation-duration: 3s;
@@ -140,7 +139,7 @@ body {
   border-radius: 10px;
 /*  animation-name: slideright 2s forwards;*/
   visibility: hidden;
-/*  position: absolute;*/
+
 }
 /*@keyframes slideright {
   0% {transform: translateX(-900px);}
@@ -202,7 +201,6 @@ body {
 /*  border: 1px solid black;*/
   width: 500px;
   height: auto;
-/*  flex-direction: column;*/
 }
 
 #resetwrapper {
@@ -272,3 +270,30 @@ body {
 /*  border: 1px solid black;*/
 }
 
+@media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+#wrapperall {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#homepage {
+  position: absolute;
+  z-index: 1;
+  flex-direction: column;
+}
+#gamepage {
+  visibility: hidden;
+  position: absolute;
+  z-index: 2;
+  flex-direction: column;
+}
+
+
+
+}
