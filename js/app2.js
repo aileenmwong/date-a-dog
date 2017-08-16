@@ -11,7 +11,7 @@ window.onload = function() {
 
 //make an array of an object of questions
   let questions = [
-    {ask: 'Why are you single',
+    {ask: 'Why are you single?',
       answers: [
         { word: 'I\'m not, I\'m just here to get a dog!',
           points: 0,
