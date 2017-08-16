@@ -1,4 +1,5 @@
-//Jquery version
+//jQuery version
+//I sat with the TA for a long time, and for some reason, jQuery is not working in my loops. It only works in the method outside of the loops. I had to leave a few Vanilla pieces of code to make the game fully functional, but now my jQuery version works.
 
 window.onload = function() {
   console.log('Love meter activated!');
@@ -171,6 +172,7 @@ window.onload = function() {
       ]
     },
   ]
+  // console.log(questions)
   let dogResponses = ['Are you having a ruff day,', 'Bone Appetit,', 'Ummm...sure OK,', 'What dat again,', 'Don\'t terrior yourself up about it,', 'That\'s im-paw-sible,', 'Purrrfect,', 'Ex-squeeze me,', 'If I toss a stick, will you go away?', 'Doggone it,']
   const $playButton = $('#submit');
   let counter = 0;
@@ -209,24 +211,30 @@ window.onload = function() {
     $questionask.html(questions[counter].ask);
     //loop through all of the answers
     for (let j=0; j < questions[counter].answers.length; j++){
-      let $answer = $('.answer');
+      let $answer = $('.answer')
+      console.log($answer)
       //print the current answer
-      $answer[j].append(questions[counter].answers[j].word);
+      // $answer[j].html(questions[counter].answers[j].word); <- this doesn't work
+       $answer[j].innerHTML=questions[counter].answers[j].word;
     };
   }
   //call makeHearts function
-  makeHearts();
+   makeHearts();
 
 
   function makeHearts(){
     for (let i=0; i < questions[counter].answers.length; i++){
-      let $answer = $('.answer');
+      let $answer = $('.answer')
+
         //grab the points of the each answer
       $answer[i].points = questions[counter].answers[i].points;
       //store the points in a variable called nodePoints
       let nodePoints = $answer[i].points;
+      console.log(nodePoints);
       //add event listener
-      $answer[i].click(function (){
+       $answer[i].addEventListener('click',function(){
+      // $answer[i].click(function(){ <- this doesn't work
+
         //on click, add the points of the answer to the current points
         player.points += nodePoints;
         console.log(player.points);
@@ -241,7 +249,7 @@ window.onload = function() {
         //increase counter
         counter++;
         console.log(counter);
-        $('#hearts').html = hearts;
+        $('#hearts').html(hearts);
         dogTalk();
         getWinner();
       });
