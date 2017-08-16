@@ -229,7 +229,6 @@ window.onload = function() {
       answer[i].addEventListener('click', function lovemeter(){
         //on click, add the points of the answer to the current points
         player.points += nodePoints;
-        console.log(player.points);
         //render the points into hearts
         let score = player.points;
         let hearts = ' ';
@@ -240,7 +239,6 @@ window.onload = function() {
         };
         //increase counter
         counter++;
-        console.log(counter);
         document.querySelector('#hearts').innerHTML = hearts;
         dogTalk();
         getWinner();
