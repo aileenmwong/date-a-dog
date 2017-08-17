@@ -54,7 +54,7 @@ I would like to add more dogs with different personalities to my game. I would l
 I want the game to resize in mobile. I would also like to add sound effects and music to the game. I want to figure out how to trigger a CSS animation based on a click as well. Right now the different animations change appearance based on toggling visbility. 
 
 ### Issues to solve ###
-Since I wrote my code in Vanilla Javascript, I later refactored it to Jquery when it was complete. For some reason, my code was not able to access the jQuery library when it was inside of a loop, but would work outside of the loop. I worked with a TA for a long time and he was unable to figure it out as well, so there are still two lines of Vanilla JS in the jQuery file.
+Since I wrote my code in Vanilla Javascript, I later refactored it to jQuery when it was complete. For some reason, my code was not able to access the jQuery library when it was inside of a loop, but would work outside of the loop. I worked with a TA for a long time and he was unable to figure it out as well, so there are still two lines of Vanilla JS in the jQuery file.
 
 ### Wireframes ### 
 
