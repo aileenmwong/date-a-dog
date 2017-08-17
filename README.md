@@ -13,6 +13,7 @@ Ever see a dog on the street and want to take it home? Now you can! Go on a date
 - HTML5
 - CSS3
 - Vanilla Javascript
+- jQuery
 
 ### About the Build ###
 
@@ -22,7 +23,7 @@ It was actually really good that I learned how to toggle visibility because I wa
 
 **CSS3** - I was able to implement some simple CSS animation in the game, such as the drop down title on the home page, and the bobbing head on the second page. I took the same logic that we used in our planets exercise to execute bob of the head.
 
-**Javascript** - I wrote the code in Vanilla Javascript, as it was the easiest way for me to implement, as I knew that this would be the trickiest part of the game. I wrapped all of the questions into a very large object literal and was able to continuously feel each question and answer into a function. The trickiest part for me was figuring out how to turn the points into actual hearts that appear in the lovemeter, which is shown below in code. 
+**Javascript** - I wrote the code in Vanilla Javascript, as it was the easiest way for me to implement, as I knew that this would be the trickiest part of the game. I then refactored my code into jQuery. I wrapped all of the questions into a very large object literal and was able to continuously feel each question and answer into a function. The trickiest part for me was figuring out how to turn the points into actual hearts that appear in the lovemeter, which is shown below in code. 
 
 ##### Example Code ###
 
@@ -50,10 +51,10 @@ I knew I wanted to a do a dog themed choose your own adventure game, but it ende
 ### Future Improvements ###
 I would like to add more dogs with different personalities to my game. I would like for the player to be able to choose which dog they want to go on a date with. 
 
-I would also like to add sound effects and music to the game. I want to figure out how to trigger a CSS animation based on a click as well. Right now the different animations change appearance based on toggling visbility. 
+I want the game to resize in mobile. I would also like to add sound effects and music to the game. I want to figure out how to trigger a CSS animation based on a click as well. Right now the different animations change appearance based on toggling visbility. 
 
 ### Issues to solve ###
-Since I wrote my code in Vanilla Javascript, I tried to refactor it to Jquery when it was complete. Unfortunately I was not able to get the code to work, even though it's not showing me any errors. I've attached two JS files, app.js is the Vanilla Javascript, app2.js is the Jquery version which doesn't work. 
+Since I wrote my code in Vanilla Javascript, I later refactored it to Jquery when it was complete. For some reason, my code was not able to access the jQuery library when it was inside of a loop, but would work outside of the loop. I worked with a TA for a long time and he was unable to figure it out as well, so there are still two lines of Vanilla JS in the jQuery file.
 
 ### Wireframes ### 
 
